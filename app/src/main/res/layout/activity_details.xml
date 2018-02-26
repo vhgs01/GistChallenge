@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.hugo.victor.gistchallenge.activity.ui.DetailsActivity">
+
+    <LinearLayout
+        android:id="@+id/llHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGray0"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/space_8"
+        android:paddingTop="@dimen/space_8">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ivGistImage"
+            android:layout_width="@dimen/space_80"
+            android:layout_height="@dimen/space_80"
+            android:layout_margin="@dimen/space_10"
+            android:src="@mipmap/ic_launcher_round"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="@dimen/space_1" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvOwner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/txt_space_25"
+                android:textStyle="bold"
+                tools:text="Owner" />
+
+            <TextView
+                android:id="@+id/tvLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/txt_space_16"
+                android:textStyle="bold"
+                tools:text="HTML" />
+
+        </LinearLayout>
+
+        <com.github.ivbaranov.mfb.MaterialFavoriteButton
+            android:id="@+id/mfbFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:mfb_animate_favorite="true"
+            app:mfb_animate_unfavorite="true"
+            app:mfb_favorite_image="@drawable/favorite_star"
+            app:mfb_not_favorite_image="@drawable/default_star"
+            app:mfb_rotation_duration="400"
+            app:mfb_size="64" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/svDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/llHead"
+        android:clipToPadding="false"
+        android:scrollbars="vertical">
+
+        <WebView
+            android:id="@+id/wvDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none" />
+
+    </ScrollView>
+
+</RelativeLayout>

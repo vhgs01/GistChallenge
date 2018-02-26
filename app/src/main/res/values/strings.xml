@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name" translatable="false">GistChallenge</string>
+    <string name="app_info_title">Informações</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_favorites">Favoritos</string>
+    <string name="title_about">Sobre</string>
+    <string name="error_download_gists">Nenhum registro encontrado.</string>
+    <string name="privateName">Usuário privado</string>
+    <string name="unknownLanguage">Linguagem desconhecida</string>
+    <string name="txt_version">Versão 1.0 [Android]</string>
+    <string name="txt_developed">Desenvolvido por Victor Hugo Garcia da Silva</string>
+    <string name="txt_cargo">Líder Técnico | Desenvolvedor</string>
+</resources>

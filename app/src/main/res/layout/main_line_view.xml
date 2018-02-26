@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/civAvatar"
+        android:layout_width="@dimen/space_80"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_10"
+        android:src="@mipmap/ic_launcher_round"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="@dimen/space_1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/space_5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvOwner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="@dimen/txt_space_22"
+            tools:text="Victor Hugo" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/space_10"
+            android:paddingRight="@dimen/space_10">
+
+            <TextView
+                android:id="@+id/tvFilename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/txt_space_18"
+                tools:text="Arquivo xyz" />
+
+            <TextView
+                android:id="@+id/tvLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:ellipsize="end"
+                android:gravity="right"
+                android:maxLines="1"
+                android:textSize="@dimen/txt_space_18"
+                tools:text="Java Android" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

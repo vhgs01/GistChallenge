@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_info_title">Informations</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_about">About App</string>
+    <string name="error_download_gists">No records found.</string>
+    <string name="privateName">Private user</string>
+    <string name="unknownLanguage">Unknown language</string>
+    <string name="txt_version">Version 1.0 [Android]</string>
+    <string name="txt_developed">Developed by Victor Hugo Garcia da Silva</string>
+    <string name="txt_cargo">Technical Leader | Developer</string>
+</resources>
