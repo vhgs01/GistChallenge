@@ -24,6 +24,7 @@
         <activity android:name=".activity.ui.InfoActivity" />
         <activity android:name=".activity.ui.DetailsActivity" />
         <activity android:name=".activity.ui.MainActivity" />
+        <activity android:name=".activity.ui.FavoritesActivity"></activity>
     </application>
 
 </manifest>

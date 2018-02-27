@@ -84,23 +84,25 @@ public class PersonListAdapter extends RecyclerView.Adapter {
         @BindView(R.id.ivLinkedin)
         ImageView ivLinkedin;
 
-        public DeveloperHolder(View itemView) {
+        DeveloperHolder(View itemView) {
             super(itemView);
 
+            // INICIALIZAÇÃO DO BUTTER KNIFE
             ButterKnife.bind(this, itemView);
         }
 
         @OnClick({R.id.container})
-        public void onClick(View view) {
+        void onClick(View view) {
             try {
                 int position = (int) view.getTag();
 
                 if (mLinkedins[position].equals("nd"))
                     return;
 
+                // ABRE O LINKEDIN
                 Util.openLinkedinProfile(mContext, mLinkedins[position]);
             } catch (Exception error) {
-                Log.e("Error", "Error at onBindViewHolder in " + getClass().getName() + ". " + error.getMessage());
+                Log.e("Error", "Error at openLinkedInProfile in " + getClass().getName() + ". " + error.getMessage());
             }
         }
     }

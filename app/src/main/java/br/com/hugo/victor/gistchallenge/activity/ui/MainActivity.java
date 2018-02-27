@@ -22,7 +22,6 @@ import java.util.List;
 import br.com.hugo.victor.gistchallenge.R;
 import br.com.hugo.victor.gistchallenge.activity.adapter.GistAdapter;
 import br.com.hugo.victor.gistchallenge.activity.data.models.Gist;
-import br.com.hugo.victor.gistchallenge.activity.data.models.GistCatalog;
 import br.com.hugo.victor.gistchallenge.activity.data.models.GistFile;
 import br.com.hugo.victor.gistchallenge.activity.data.models.GistFileObject;
 import br.com.hugo.victor.gistchallenge.activity.util.GistMap;
@@ -38,7 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     // DECLARAÇÃO DE VARIÁVEIS
-    private List<GistCatalog> mGists = new ArrayList<>();
+    private List<Gist> mGists = new ArrayList<>();
     private GistAdapter mGistAdapter;
 
     // BIND DOS ELEMENTOS
@@ -61,13 +60,18 @@ public class MainActivity extends AppCompatActivity {
                     Intent intentHome = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intentHome);
                     finish();
+                    return true;
                 case R.id.nav_favorite:
+                    Intent intentFavorites = new Intent(getApplicationContext(), FavoritesActivity.class);
+                    startActivity(intentFavorites);
                     return true;
                 case R.id.nav_about:
                     Intent intentAbout = new Intent(getApplicationContext(), InfoActivity.class);
                     startActivity(intentAbout);
+                    return true;
+                default:
+                    return false;
             }
-            return false;
         }
     };
 
@@ -114,20 +118,21 @@ public class MainActivity extends AppCompatActivity {
                     tvNotGists.setVisibility(View.VISIBLE);
                 } else {
                     // CRIA UMA LISTA DE GISTCATALOG COM O RESPONSE DO REQUEST
-                    List<Gist> catalog = response.body();
-
-                    for (Gist g : catalog) {
-                        for (GistFile f : g.files.gists) {
-                            GistCatalog gistItem = new GistCatalog();
-                            gistItem.gist = f;
-                            gistItem.owner = g.owner;
-                            mGists.add(gistItem);
-                        }
-                    }
+                    mGists = response.body();
+//                    List<Gist> result= response.body();
+//
+//                    for (Gist g : result) {
+//                        for (GistFile f : g.files.gists) {
+//                            GistCatalog gistItem = new GistCatalog();
+//                            gistItem.gist = f;
+//                            gistItem.owner = g.owner;
+//                            mGists.add(gistItem);
+//                        }
+//                    }
 
                     // CRIA UM NOVO GISTADAPTER COLOCANDO UM LISTENER DE CLICK QUE QUANDO SELECIONAR UM ITEM COLOCA NO BUNDLE
                     // AS INFORMAÇÕES NECESSÁRIAS PARA NA OUTRA ACTIVITY CARREGAR CORRETAMENTE
-                    mGistAdapter = new GistAdapter(context, catalog, new GistAdapter.OnGistClickListener() {
+                    mGistAdapter = new GistAdapter(context, mGists, new GistAdapter.OnGistClickListener() {
                         @Override
                         public void onClicked(int position) {
                             Bundle bundle = new Bundle(1);

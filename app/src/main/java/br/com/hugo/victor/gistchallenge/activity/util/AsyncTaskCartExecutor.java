@@ -5,7 +5,6 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 
@@ -54,7 +53,7 @@ public class AsyncTaskCartExecutor extends AsyncTask<Void, Void, Boolean> {
                     }
                     return true;
                 } catch (Exception error) {
-                    Log.e("Error", "Error at inset in database in " + getClass().getName() + ". " + error.getMessage());
+                    Log.e("Error", "Error at insert in database in " + getClass().getName() + ". " + error.getMessage());
                     return false;
                 }
             case "delete":

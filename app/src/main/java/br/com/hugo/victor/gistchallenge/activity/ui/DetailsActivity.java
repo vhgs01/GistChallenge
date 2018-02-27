@@ -2,7 +2,6 @@ package br.com.hugo.victor.gistchallenge.activity.ui;
 
 import android.annotation.SuppressLint;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,14 +13,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.ivbaranov.mfb.MaterialFavoriteButton;
 import com.squareup.picasso.Picasso;
 
 import br.com.hugo.victor.gistchallenge.R;
 import br.com.hugo.victor.gistchallenge.activity.data.database.FavoriteDB;
-import br.com.hugo.victor.gistchallenge.activity.data.models.GistCatalog;
+import br.com.hugo.victor.gistchallenge.activity.data.models.Gist;
 import br.com.hugo.victor.gistchallenge.activity.util.AsyncTaskCartExecutor;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,7 +27,7 @@ import butterknife.ButterKnife;
 public class DetailsActivity extends AppCompatActivity {
 
     // DECLARAÇÃO DE VARIÁVEIS
-    GistCatalog mGist;
+    Gist mGist;
 
     // BIND DOS ELEMENTOS
     @BindView(R.id.tvOwner)
@@ -62,7 +60,7 @@ public class DetailsActivity extends AppCompatActivity {
             finish();
         }
 
-        mGist = (GistCatalog) (extras != null ? extras.getSerializable("DETAILS") : null);
+        mGist = (Gist) (extras != null ? extras.getSerializable("DETAILS") : null);
         if (mGist == null) {
             finish();
         }
@@ -79,8 +77,8 @@ public class DetailsActivity extends AppCompatActivity {
             }
         }
 
-        if (!mGist.gist.language.isEmpty()) {
-            gistLanguage = mGist.gist.language;
+        if (!mGist.files.gists.get(0).language.isEmpty()) {
+            gistLanguage = mGist.files.gists.get(0).language;
         }
 
         tvLanguage.setText(gistLanguage);
@@ -104,7 +102,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         // PEGA OS DADOS DA URL E COLOCA NO ELEMENTO WEBVIEW
         mWvDetails.getSettings().setJavaScriptEnabled(true);
-        mWvDetails.loadUrl(mGist.gist.raw_url);
+        mWvDetails.loadUrl(mGist.files.gists.get(0).raw_url);
         mWvDetails.getSettings().setLoadWithOverviewMode(true);
         mWvDetails.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         mWvDetails.setScrollContainer(false);
@@ -112,7 +110,11 @@ public class DetailsActivity extends AppCompatActivity {
         // SE ACHAR NA TABELA DE FAVORITOS DEFINE COMO FAVORITO
         // INSTANCIANDO E EXECUTANDO UMA ASYNCTASK
         try {
-            AsyncTaskCartExecutor task = new AsyncTaskCartExecutor(getApplicationContext(), createFavoriteInstance(), "showOne", mfbFavorite);
+            AsyncTaskCartExecutor task = new AsyncTaskCartExecutor(
+                    getApplicationContext(),
+                    createFavoriteInstance(),
+                    "showOne",
+                    mfbFavorite);
             task.execute();
         }  catch (Exception error) {
             Log.e("Error", "Error at call AssyncTaskExecutor in " + getClass().getName() + ". " + error.getMessage());
@@ -127,11 +129,19 @@ public class DetailsActivity extends AppCompatActivity {
                         // ELE DESFAVORITA E REMOVE DO BANCO
                         if (mfbFavorite.isFavorite()) {
                             // INSTANCIANDO E EXECUTANDO UMA ASYNCTASK
-                            AsyncTaskCartExecutor task = new AsyncTaskCartExecutor(getApplicationContext(), createFavoriteInstance(), "insert", mfbFavorite);
+                            AsyncTaskCartExecutor task = new AsyncTaskCartExecutor(
+                                    getApplicationContext(),
+                                    createFavoriteInstance(),
+                                    "insert",
+                                    mfbFavorite);
                             task.execute();
                         } else {
                             // INSTANCIANDO E EXECUTANDO UMA ASYNCTASK
-                            AsyncTaskCartExecutor task = new AsyncTaskCartExecutor(getApplicationContext(), createFavoriteInstance(), "delete", mfbFavorite);
+                            AsyncTaskCartExecutor task = new AsyncTaskCartExecutor(
+                                    getApplicationContext(),
+                                    createFavoriteInstance(),
+                                    "delete",
+                                    mfbFavorite);
                             task.execute();
                         }
                     }
@@ -151,9 +161,9 @@ public class DetailsActivity extends AppCompatActivity {
             fav.setOwner(getString(R.string.privateName));
         }
 
-        fav.setFilename(mGist.gist.filename);
-        fav.setLanguage(mGist.gist.language);
-        fav.setRawurl(mGist.gist.raw_url);
+        fav.setFilename(mGist.files.gists.get(0).filename);
+        fav.setLanguage(mGist.files.gists.get(0).language);
+        fav.setRawurl(mGist.files.gists.get(0).raw_url);
 
         return fav;
     }

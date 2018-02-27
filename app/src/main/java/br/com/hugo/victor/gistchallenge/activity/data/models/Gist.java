@@ -1,6 +1,8 @@
 package br.com.hugo.victor.gistchallenge.activity.data.models;
 
-public class Gist {
+import java.io.Serializable;
+
+public class Gist implements Serializable {
 
     public Owner owner;
     public GistFileObject files;

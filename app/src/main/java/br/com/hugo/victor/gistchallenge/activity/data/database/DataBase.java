@@ -9,6 +9,7 @@ import br.com.hugo.victor.gistchallenge.activity.data.dao.FavoriteDAO;
 
 @Database(entities = {FavoriteDB.class}, version = 1)
 public abstract class DataBase extends RoomDatabase {
+
     private static final String DB_NAME = "gistChallangeDB";
     private static DataBase INSTANCE;
 
