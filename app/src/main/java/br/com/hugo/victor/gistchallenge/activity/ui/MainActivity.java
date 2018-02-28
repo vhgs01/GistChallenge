@@ -22,7 +22,6 @@ import java.util.List;
 import br.com.hugo.victor.gistchallenge.R;
 import br.com.hugo.victor.gistchallenge.activity.adapter.GistAdapter;
 import br.com.hugo.victor.gistchallenge.activity.data.models.Gist;
-import br.com.hugo.victor.gistchallenge.activity.data.models.GistFile;
 import br.com.hugo.victor.gistchallenge.activity.data.models.GistFileObject;
 import br.com.hugo.victor.gistchallenge.activity.util.GistMap;
 import br.com.hugo.victor.gistchallenge.activity.util.GistService;
@@ -119,16 +118,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // CRIA UMA LISTA DE GISTCATALOG COM O RESPONSE DO REQUEST
                     mGists = response.body();
-//                    List<Gist> result= response.body();
-//
-//                    for (Gist g : result) {
-//                        for (GistFile f : g.files.gists) {
-//                            GistCatalog gistItem = new GistCatalog();
-//                            gistItem.gist = f;
-//                            gistItem.owner = g.owner;
-//                            mGists.add(gistItem);
-//                        }
-//                    }
 
                     // CRIA UM NOVO GISTADAPTER COLOCANDO UM LISTENER DE CLICK QUE QUANDO SELECIONAR UM ITEM COLOCA NO BUNDLE
                     // AS INFORMAÇÕES NECESSÁRIAS PARA NA OUTRA ACTIVITY CARREGAR CORRETAMENTE

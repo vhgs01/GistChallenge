@@ -58,7 +58,10 @@ public class AsyncTaskCartExecutor extends AsyncTask<Void, Void, Boolean> {
                 }
             case "delete":
                 try {
-                    db.favoriteDAO().deleteFavorite(mFavoriteDB);
+                    FavoriteDB fav = db.favoriteDAO().showFavoriteByOwner(mFavoriteDB.getOwner());
+                    if (fav != null) {
+                        db.favoriteDAO().deleteFavorite(fav);
+                    }
                     return false;
                 } catch (Exception error) {
                     Log.e("Error", "Error at delete in database in " + getClass().getName() + ". " + error.getMessage());

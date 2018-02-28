@@ -52,7 +52,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter {
         holderF.tvOwner.setText(favorite.getOwner());
         holderF.tvFilename.setText(favorite.getFilename());
         holderF.tvLanguage.setText(favorite.getLanguage());
-        Picasso.with(mContext).load(Uri.parse(favorite.getAvatar())).fit().into(holderF.civAvatar);
+        if (favorite.getAvatar() != null) {
+            Picasso.with(mContext).load(Uri.parse(favorite.getAvatar())).fit().into(holderF.civAvatar);
+        }
 
     }
 

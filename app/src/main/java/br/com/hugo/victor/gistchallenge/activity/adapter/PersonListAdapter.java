@@ -61,7 +61,7 @@ public class PersonListAdapter extends RecyclerView.Adapter {
             holder.container.setTag(position);
 
             holder.container.setBackgroundColor(position % 2 == 0 ?
-                    ContextCompat.getColor(mContext, R.color.colorGray1) :
+                    ContextCompat.getColor(mContext, R.color.colorGray0) :
                     ContextCompat.getColor(mContext, android.R.color.white));
         } catch (Exception error) {
             Log.e("Error", "Error at onBindViewHolder in " + getClass().getName() + ". " + error.getMessage());

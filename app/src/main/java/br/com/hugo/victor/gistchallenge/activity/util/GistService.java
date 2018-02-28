@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 public interface GistService {
 
     // DECLARAÇÃO DE VARIÁVEIS
-    String PER_PAGE = "300";
+    String PER_PAGE = "100";
     String BASE_URL = "https://api.github.com/";
 
     // MÉTODO DE REQUEST

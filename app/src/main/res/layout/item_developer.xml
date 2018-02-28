@@ -24,7 +24,7 @@
         android:layout_toStartOf="@+id/ivLinkedin"
         android:textColor="@color/colorGray2"
         android:textSize="@dimen/txt_space_16"
-        android:text="Victor Hugo" />
+        android:text="@string/txt_nome_desenvolvedor" />
 
     <TextView
         android:id="@+id/tvDesc"
